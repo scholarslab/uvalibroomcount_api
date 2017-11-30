@@ -8,8 +8,8 @@ class RoomOccupancy(models.Model):
     '''
     date_created = models.DateTimeField(auto_now_add=True)
     room = models.ForeignKey(room_model.Building, null=True, on_delete=models.CASCADE, related_name='room_occupancy')
-    occupancy = models.IntegerField()
-    date_updated = models.DateTimeField(null=True)
+    occupancy = models.IntegerField(default=0)
+    # date_updated = models.DateTimeField(null=True)
     archived = models.BooleanField(default=False)
     date_archived = models.DateTimeField(null=True)
 

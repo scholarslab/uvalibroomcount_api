@@ -37,20 +37,22 @@ class TestRoomOccupancyModel(TestCase):
         """
         assertEqual(room_occupancy_model.RoomOccupancy.objects.get(room=self.room).pk, self.room_occupancy.pk)
 
-    def test_room_occupancy_updated(self):
-        """
-        Test that a room occcupancy can be updated
-        """
-        self.room_occupancy.occupancy = self.room_occupancy.occupancy + 1
-        self.room_occupancy.save()
-        self.room_occupancy.date_updated = datetime.now().time()
-        assertEqual(self.room_occupancy.occupancy, 11)
+    # def test_room_occupancy_updated(self):
+    #     """
+    #     Test that a room occcupancy can be updated
+    #     """
+    #     self.room_occupancy.occupancy = self.room_occupancy.occupancy + 1
+    #     self.room_occupancy.save()
+    #     self.room_occupancy.date_archived = datetime.now().time()
+    #     assertEqual(self.room_occupancy.occupancy, 11)
 
     def test_room_occupancy_archived(self):
         """
         Test that a room occcupancy can be archived
         """
+        self.room_occupancy.occupancy = self.room_occupancy.occupancy + 1
         self.room_occupancy.archived = True
         self.room_occupancy.date_archived = datetime.now().time()
         self.room_occupancy.save()
+        assertEqual(self.room_occupancy.occupancy, 11)
         assertTrue(self.room_occupancy.archived)

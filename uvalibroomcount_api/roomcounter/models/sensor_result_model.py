@@ -5,9 +5,11 @@ from . import sensor_model
 class SensorResult(models.Model):
     ''' The Sensor Result class is a model that defines which data is available in the Sensor Result table.
     '''
-    datetime_recorded = models.DateTimeField(auto_now_add=True)
+    date_recorded = models.DateTimeField(auto_now_add=True)
     sensor = models.ForeignKey(sensor_model.Sensor, null=True, on_delete=models.CASCADE, related_name='sensor_results')
-    result = models.BooleanField(default=False)
+    count_up = models.IntegerField(default=0)
+    count_down = models.IntegerField(default=0)
+
     # boolean field here is stand-in. Need to decide if we want to use 0 or 1, or some type of integer or word to represent positive and negative results
 
     def __str__(self):

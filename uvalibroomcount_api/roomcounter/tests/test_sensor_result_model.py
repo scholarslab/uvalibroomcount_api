@@ -24,17 +24,20 @@ class TestSensorResultModel(TestCase):
             sensor_location = 'POINT(38.029306, -78.476678)'
         )
         self.sensor_result = sensor_result_model.SensorResult.objects.create(
-            sensor = self.sensor,
-            result = True
+            sensor = self.sensor
         )
 
     def tearDown(self):
         del self.building
         del self.room
         del self.sensor
+        del self.sensor_result
 
     def test_sensor_result_created(self):
         """
         Test that a sensor result can be created
         """
+        self.sensor_result.count_up = 1
+        self.sensor_result.save()
         self.assertEqual(sensor_result_model.SensorResult.objects.get(sensor=self.sensor).pk, self.sensor_result.pk)
+        self.assertEqual(self.sensor_result.count_up, 1)
