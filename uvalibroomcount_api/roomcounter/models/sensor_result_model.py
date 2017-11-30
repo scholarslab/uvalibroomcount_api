@@ -2,7 +2,7 @@ from django.db import models
 from . import sensor_model
 
 
-class Sensor_Result(models.Model):
+class SensorResult(models.Model):
     ''' The Sensor Result class is a model that defines which data is available in the Sensor Result table.
     '''
     datetime_recorded = models.DateTimeField(auto_now_add=True)

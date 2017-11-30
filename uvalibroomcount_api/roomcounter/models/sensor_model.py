@@ -9,7 +9,7 @@ class Sensor(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     room = models.ForeignKey(room_model.Room, null=True, on_delete=models.CASCADE, related_name='sensors')
     sensor_location = PointField()
-    active = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
     # do we want to give sensors names for ease of identifying them? Like periodical_room_sensor_one?
 
     def __str__(self):

@@ -8,7 +8,7 @@ class Room(models.Model):
     '''
     date_created = models.DateTimeField(auto_now_add=True)
     building = models.ForeignKey(building_model.Building, null=True, on_delete=models.CASCADE, related_name='rooms')
-    room_dimensions = PolygonField()
+    # room_dimensions = PolygonField()
     room_name = models.CharField(max_length=200, blank=True)
     room_max_capacity = models.IntegerField()
     building_floor = models.CharField(max_length=100)
