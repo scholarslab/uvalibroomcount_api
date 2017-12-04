@@ -1,3 +1,4 @@
 .git
 drf-uvalibroomcount
 .DS_Store
+*.pyc
