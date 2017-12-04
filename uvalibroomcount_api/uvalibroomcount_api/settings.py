@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
     'rest_framework',
     'roomcounter'
 ]
@@ -75,7 +76,9 @@ WSGI_APPLICATION = 'uvalibroomcount_api.wsgi.application'
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [],
+    'DEFAULT_PERMISSION_CLASSES': (
+       'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
     'TEST_REQUEST_DEFAULT_FORMAT': 'json'
 }
 
@@ -84,8 +87,10 @@ REST_FRAMEWORK = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'uvalibroom',
+        'USER': 'slab',
+        'PASSWORD': 'asdfasdf',
     }
 }
 

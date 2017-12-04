@@ -13,4 +13,4 @@ class Sensor(models.Model):
     # do we want to give sensors names for ease of identifying them? Like periodical_room_sensor_one?
 
     def __str__(self):
-        return '%s %s' % (self.id)
+        return '%s %s' % (self.id, self.active)

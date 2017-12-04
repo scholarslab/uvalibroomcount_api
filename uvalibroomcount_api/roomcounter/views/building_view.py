@@ -1,22 +1,13 @@
-from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework import viewsets
+from rest_framework.permissions import *
 from rest_framework.response import Response
-from snippets.models import Snippet
-from snippets.serializers import SnippetSerializer
+from roomcounter.models import *
+from roomcounter.serializers import *
 
-@api_view(['GET', 'POST'])
-def snippet_list(request):
-    """
-    List all code snippets, or create a new snippet.
-    """
-    if request.method == 'GET':
-        snippets = Snippet.objects.all()
-        serializer = SnippetSerializer(snippets, many=True)
-        return Response(serializer.data)
-
-    elif request.method == 'POST':
-        serializer = SnippetSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# need a view to get all buildings, individual buildings, building hours, delete a building, update a building - needs permissions
+class BuildingViewSet(viewsets.ModelViewSet):
+    ''' The BuildingViewSet class is a view that lists out all buildings and details about a building.
+    '''
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = building_model.Building.objects.all()
+    serializer_class = building_serializer.BuildingSerializer

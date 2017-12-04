@@ -13,4 +13,4 @@ class SensorResult(models.Model):
     # boolean field here is stand-in. Need to decide if we want to use 0 or 1, or some type of integer or word to represent positive and negative results
 
     def __str__(self):
-        return '%s %s' % (self.id)
+        return '%s %s %s %s' % (self.id, self.count_down, self.count_up, self.date_recorded)
